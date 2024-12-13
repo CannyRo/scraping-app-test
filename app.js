@@ -1,22 +1,30 @@
 (function app() {
-    // variables
-    // ...
-    // functions
-    // ...
+  // variables
+  // ...
+  // functions
+  // ...
 
-    // initialization
+  // initialization
 
-    // check location
+  // check location
+  function checkLocation() {
+    const modal = document.querySelector(".c-popin--wrongmarket.c-popin--opened");
+    if (modal) {
+      const continueButton = modal.querySelector('button[data-action="closePopinButtonContinue"]');
+      if (continueButton) {
+        continueButton.click();
+      }
+    }
+  }
+  // check cookie
 
-    // check cookie
+  // get data by id
 
-    // get data by id
+  // save data
 
-    // save data
+  // show data
 
-    // show data
+  // listener/observer
 
-    // listener/observer
-
-    // sequence get data + save data + show data
+  // sequence get data + save data + show data
 })();
