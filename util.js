@@ -12,3 +12,16 @@
     }
   }
 })();
+
+// Manage cookie modall
+(function checkCookieModal() {
+  const modal = document.querySelector("#onetrust-banner-sdk");
+  if (modal.style.display === "") {
+    const acceptOnlyNecessaryCookie = modal.querySelector(
+      "#onetrust-reject-all-handler"
+    );
+    if (acceptOnlyNecessaryCookie) {
+      acceptOnlyNecessaryCookie.click();
+    }
+  }
+})();
