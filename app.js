@@ -10,6 +10,7 @@
     checkCookie();
     let myProduct = getProductById("814415W3XUA9010");
     console.log('myProduct', myProduct);
+    observeProducts();
   }
   // check location
   function checkLocation() {
@@ -57,7 +58,28 @@
   // show data
 
   // listener/observer
-
+  function observeProducts() {
+    const elementList = document.querySelectorAll("article.c-product");
+    if (elementList.length > 0) {
+      const optionParams = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.9,
+      };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            console.log(`Element ${entry.target.className} is visible.`);
+            console.log("==>");
+            console.log(entry.target);
+          }
+        });
+      }, optionParams);
+      elementList.forEach((element) => observer.observe(element));
+    } else {
+      console.log("No element found");
+    }
+  }
   // sequence get data + save data + show data
 
   // Init ON
