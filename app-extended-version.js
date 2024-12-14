@@ -39,7 +39,6 @@
       myProductElement = document.querySelector(`.c-product[data-pid="${id}"]`);
       const rawDataString = myProductElement.getAttribute("data-gtmproduct");
       const dataJson = JSON.parse(rawDataString);
-      console.log('Call getAndUpadteFormattedData Function...');
       getAndUpadteFormattedData();
     //   addCurrency();
       function addCurrency() {
