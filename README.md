@@ -36,11 +36,12 @@ A snippet JS to scrap some data.
 
 ### What I learned
 
-Use the 
+I've started an introduction to data scraping with Javascript and learn how use the Intersection Observer API and the MutationObserver.
 
 ### Useful resources
 
-- [Angular 18](https://angular.dev/) - This helped me for everything!!! Yes the documentation is better than ChatGPT (but it can still be useful for understanding certain concepts, functions, patterns, etc...).
+- [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) - This helped me to detect visibility of an element (In my example, if a product is visible I display his name and price in the console).
+- [MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) - This helped me to detect mutation in the DOM (In my example, if new products are injected in the DOM after scrolling near the footer I can re initialize the observer to take these new elements into account).
 
 ## Author
 
