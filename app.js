@@ -22,10 +22,10 @@
       }
     }
   }
-  // Check Cookie Modam
+  // Check Cookie Modal
   function checkCookie() {
     const modal = document.querySelector("#onetrust-banner-sdk");
-    if (modal.style.display === "") {
+    if (modal?.style.display === "") {
       const acceptOnlyNecessaryCookie = modal.querySelector(
         "#onetrust-reject-all-handler"
       );

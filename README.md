@@ -5,6 +5,7 @@ A snippet JS to scrap some data.
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
+  - [My solution](#my-solution)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
@@ -22,6 +23,14 @@ A snippet JS to scrap some data.
 1) Once copied/pasted into the console, after the page has loaded, this snippet should display in the console the name and price of the items displayed, and only these.
 2) If the user scrolls down the page, either with the mouse or the side navigation bar, the code should automatically push into the console the information for the new products displayed.
 3) If the user re-displays products already pushed into the console, no information should be returned.
+
+### My solution
+
+app.js is my fisrt solution.
+
+app-extended-version.js is an extended version which manage the internationalization
+if the location is France, the product names will be log in french like the page displays them
+(same for the price)
 
 ### Links
 
