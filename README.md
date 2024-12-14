@@ -36,7 +36,7 @@ A snippet JS to scrap some data.
 
 ### What I learned
 
-Some bases of Angular 18, Typescript and Signals.
+Use the 
 
 ### Useful resources
 
