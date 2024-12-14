@@ -1,20 +1,14 @@
 (function app() {
-  // variables
-  let registeredData = [];
-  let temporaryData = [];
-  // functions
-  // ...
-
-  // initialization
+  // Variables
+  let registeredData = []; // Where we register all products after displayed them on screen
+  let temporaryData = []; // Where we register the onscreen products before displayed them
+  // Initialization
   function init() {
     checkLocation();
     checkCookie();
-    // let myProduct = getProductById("814415W3XUA9010");
-    // console.log("myProduct", myProduct);
-    // observeProducts();
     observeDynamicallyProducts();
   }
-  // check location
+  // Check Location Modal
   function checkLocation() {
     const modal = document.querySelector(
       ".c-popin--wrongmarket.c-popin--opened"
@@ -28,7 +22,7 @@
       }
     }
   }
-  // check cookie
+  // Check Cookie Modam
   function checkCookie() {
     const modal = document.querySelector("#onetrust-banner-sdk");
     if (modal.style.display === "") {
@@ -40,14 +34,12 @@
       }
     }
   }
-  // get data by id
+  // Get data/product by ID
   function getProductById(id) {
     myProductElement = document.querySelector(`.c-product[data-pid="${id}"]`);
     const rawDataString = myProductElement.getAttribute("data-gtmproduct");
     const dataJson = JSON.parse(rawDataString);
     addCurrency();
-    // console.log("data from product : ", dataJson.id);
-    // console.log(dataJson);
     function addCurrency() {
       const currencyNode = myProductElement.querySelector(
         "meta[itemprop='priceCurrency']"
@@ -57,16 +49,11 @@
     }
     return dataJson;
   }
-  // save data
+  // Save data from temporary to permanent variable
   function saveData(temporaryArray, permanentArray) {
-    console.log("TEMPORARY DATA : ", temporaryArray);
-    console.log("REGISTERED DATA : ", permanentArray);
     permanentArray.push(...temporaryArray);
-    console.log("=== REGISTERED DATA ===");
-    console.log(permanentArray);
-    console.log("=== === ===");
   }
-  // show formatted data
+  // Show the onscreen products after formatted them
   function showFormattedData(temporaryArray) {
     let formattedDataArray = [];
     temporaryArray.map((temporaryItem) => {
@@ -77,24 +64,21 @@
       };
       formattedDataArray.push(formattedData);
     });
-    console.log("# # # FORMATTED DATA # # #");
+    console.log("###/// Onscreen New Products ///###");
     console.table(formattedDataArray);
   }
-  // clear temporary
+  // Clear temporary data cause we've already shown them
   function clearTemporaryData() {
-    console.log("Clear temporary data ON");
     temporaryData = [];
-    console.log("temporaryData => ", temporaryData);
   }
-
-  // listener/observer
+  // Observer functioon
   function observeDynamicallyProducts() {
     const container = document.querySelector("body");
     const selector = "article.c-product";
     const optionParams = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.9,
+      threshold: 0.8, // Here we assume to count an element only if it's 80% visible at least 
     };
     let elementList = document.querySelectorAll(selector);
     const initializeObserver = (elementList, observer) => {
@@ -108,31 +92,18 @@
     const intersectionCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          console.log(`L'élément ${entry.target.className} est visible.`);
-          //   console.log("==>");
-          console.log(entry.target);
           let myId = entry.target.getAttribute("data-pid");
           if (!entry.target.dataset.registered) {
-            console.log(`Lancer la fonction getProductById(${myId})`);
             let thisProduct = getProductById(myId);
             temporaryData.push(thisProduct);
             entry.target.dataset.registered = true;
-          } else {
-            console.log(`PRODUIT DEJA VU ET AFFICHE DONC NE RIEN FAIRE`);
           }
         }
       });
-      console.log("END of forEach in intersectionCallback");
       if (temporaryData.length > 0) {
-        // start formatted function
         showFormattedData(temporaryData);
-        // end formatted function
-        // start save data function
         saveData(temporaryData, registeredData);
-        // end save data function
-        // start clear temporary data function
         clearTemporaryData();
-        // end clear temporary data function
       }
     };
     const observer = new IntersectionObserver(
@@ -141,20 +112,9 @@
     );
     const mutationObserver = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        // console.log(mutation.target.localname);
         if (mutation.type === "childList") {
-          console.log("mutation childList detected");
           elementList = document.querySelectorAll(selector);
           initializeObserver(elementList, observer);
-
-        //   const addedNodes = Array.from(mutation.addedNodes).filter(
-        //     (node) => node.matches && node.matches(selector)
-        //   );
-        //   console.log("addedNodes : ", addedNodes);
-        //   if (addedNodes.length > 0) {
-        //     console.log(`${addedNodes.length} nouvel(s) élément(s) détecté(s)`);
-        //     initializeObserver(addedNodes, observer); // Observer les nouveaux éléments
-        //   }
         }
       });
     });
@@ -164,8 +124,6 @@
     });
     initializeObserver(elementList, observer);
   }
-  // sequence get data + save data + show data
-
-  // Init ON
+  // Start the init sequence function
   init();
 })();
