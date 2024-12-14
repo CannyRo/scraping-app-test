@@ -121,3 +121,17 @@
   });
   initializeObserver(elementList, observer);
 })();
+
+// Get the exact text of a product 
+// (if the page is in english => product name in english)
+// (if the page is in french => product name in french)
+// Get 1 product by id example id="8141122ABKX1000" in https://www.balenciaga.com/fr-fr/femme/petite-maroquinerie
+(function getExactProductName(id = "8141122ABKX1000"){
+  myProductElement = document.querySelector(`.c-product[data-pid="${id}"]`);
+
+  const formattedNameNode = myProductElement.querySelector(".c-product__name");
+  console.log('formattedNameNode : ', formattedNameNode);
+  const formattedName = formattedNameNode.textContent;
+  console.log('formattedName : ', formattedName);
+  // dataJson.formattedName = formattedName;
+})();
